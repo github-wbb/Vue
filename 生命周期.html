@@ -6,30 +6,24 @@
 </head>
 <body>
 <div id="app">
-    <h1>{{ msg }}, outer html渲染</h1>
-    <div>通过生命周期，可得知render函数 > template渲染 > outer html渲染</div>
+    <h1>{{ msg }}</h1>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 <script>
-    var appVue = new Vue({
+    new Vue({
         el: '#app',
-        // template: '<h1>{{ msg }}, template渲染</h1>',
-        // render: h => h('h1', 'this is createElement'),
         data () {
             return {
-                msg: 'hello, Vue'
+                msg: 'hello, Vue生命周期'
             }
         },
-        init () {
-            console.log('初始化Vue')
-        },
         beforeCreate () {
-            console.log('beforeCreate:')
+            console.log('beforeCreate: 挂载之前, $el: undefined');
             console.log('this.$el', this.$el)
             console.log('this.$data', this.$data)
         },
         created () {
-            console.log('created:')
+            console.log('created: 挂载成功, $el: undefined, $data获取成功')
             console.log('this.$el', this.$el)
             console.log('this.$data', this.$data)
         },

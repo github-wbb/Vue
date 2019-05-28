@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue render用法</title>
+</head>
+<body>
+    <div id="app"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<script>
+
+    Vue.component('myComponent', {
+        data () {
+           return {}
+        },
+        props: {
+           msg: {
+               type: String
+           }
+        },
+        template: '<div @click="handleClick">{{ msg }}</div>',
+        methods: {
+            handleClick () {
+                alert(444);
+            }
+        }
+    })
+
+    new Vue({
+        el: '#app',
+        data () {
+            return {
+                msg: 'render函数用法',
+                child: '组件'
+            }
+        },
+        render (h) {
+            let _self = this;
+            return h('div', {
+                class: {
+                    foo: true
+                },
+                style: {
+                    'backgroundColor': '#ddd'
+                }
+            }, [
+                h('h1', {
+                    style: {
+                        'color': '#fff',
+                        'cursor': 'pointer'
+                    },
+                    on: {
+                        click: _self.renderClick
+                    }
+                },  _self.msg),
+                h('myComponent', {
+                    props: {
+                        msg: _self.child
+                    }
+                })
+            ])
+        },
+        methods: {
+            renderClick () {
+                alert(333);
+            }
+        }
+    })
+
+
+</script>
+
+</body>
+</html>
