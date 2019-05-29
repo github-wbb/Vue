@@ -5,6 +5,10 @@
     <title>Vue render用法</title>
 </head>
 <body>
+    <div>
+        原理: Vue render function ,通过createElement创建返回vnode虚拟节点，通过diff算法对比上一次vnode，把不同之处渲染到真实dom上。
+
+    </div>
     <div id="app"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
@@ -67,7 +71,6 @@
             }
         }
     })
-
 
 </script>
 
